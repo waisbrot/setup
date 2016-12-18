@@ -1,0 +1,8 @@
+---
+- name: install gnu compiling tools
+  homebrew: name={{item}} state=present
+  with_items:
+    - libtool
+    - autoconf
+    - automake
+    - intltool

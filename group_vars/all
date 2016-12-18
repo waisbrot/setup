@@ -1,0 +1,5 @@
+---
+HOME: "{{lookup('env', 'HOME')}}"
+USER: "{{lookup('env', 'USER')}}"
+rc_path: "{{HOME}}/zshrc.d"
+...

@@ -1,0 +1,11 @@
+---
+- name: install docker
+  homebrew: name=docker state=latest
+
+- name: set zshrc for docker
+  template: src=docker.zsh.j2 dest={{rc_path}}/docker.zsh
+
+- name: assert docker credentials
+  command: /usr/local/bin/docker login
+  args:
+    creates: "{{HOME}}/.docker/config.json"

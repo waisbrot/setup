@@ -1,0 +1,8 @@
+---
+- name: Install Homebrew via magic script
+  shell: >
+         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+         creates=/usr/local/Cellar
+
+- name: set zshrc for homebrew
+  template: src=homebrew.zsh.j2 dest={{rc_path}}/homebrew.zsh

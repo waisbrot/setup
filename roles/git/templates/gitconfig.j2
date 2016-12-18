@@ -1,0 +1,65 @@
+# -*- mode: gitconfig; -*-
+
+[alias]
+	co = checkout  ; svn habit
+	changes = !git log --reverse $(git tag|tail -1)...HEAD  ; all the commits since the last tagged version
+
+	# from https://hackernoon.com/lesser-known-git-commands-151a1918a60#.x6r7gjkax
+	init2 = !git init && git commit -m "root" --allow-empty
+	stash2 = stash --all
+	grog = log --graph --abbrev-commit --decorate --all --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)"
+
+[branch]
+	autoSetupRebase = always
+
+[color]
+	branch = auto
+	interactive = auto
+	status = auto
+	pager = true
+	ui = auto
+[commit]
+	gpgsign = true  ; sign everything; you may need to configure user.signingkey also
+[core]
+	editor = vim
+	pager = less
+[credential]
+	helper = osxkeychain   ; allow OS X to manage unlocking the GPG signing key
+
+[diff]
+	compactionHeuristic = true  ; new diffing
+	algorithm = histogram ; work harder on diffs
+
+[fetch]
+	prune = true ; try to clean up a bit on fetching
+
+[gpg]
+	program = /usr/local/bin/gpg2  ; gpg2 means the OS X keychain can be used to unlock the private key
+
+[interactive]
+	diffFilter = diff-highlight
+	singleKey = true
+
+[log]
+	showSignature = false  ; don't check GPG signatures in the log
+	date = iso-strict
+
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+[pull]
+	rebase = true  ; rebase any new commits on top of upstream commits
+[push]
+	default = simple  ; use the new default push
+
+[remote]
+	pushDefault = origin
+
+[tag]
+	sort = version:refname  ; assume that tags are semvers
+	forceSignAnnotated = true ; you have to sign!
+
+[user]
+	name = {{USER_FULLNAME}}
+	useconfigonly = true  ; force user.name and user.email to be explicitly configured

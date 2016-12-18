@@ -1,0 +1,20 @@
+
+function docker-cleanup() {
+    echo remove old containers
+    docker ps -aq |xargs docker rm
+
+    echo remove extra images
+    docker images --filter=dangling=true -q |xargs docker rmi
+
+    echo done
+}
+
+alias dm=docker-machine
+
+# docker-machine defaults
+export FUSION_DISK_SIZE=50000
+export FUSION_CPU_COUNT=-1
+export FUSION_MEMORY_SIZE=2048
+export VIRTUALBOX_CPU_COUNT=-1
+export VIRTUALBOX_DISK_SIZE=50000
+export VIRTUALBOX_MEMORY_SIZE=2048

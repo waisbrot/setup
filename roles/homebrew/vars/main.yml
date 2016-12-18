@@ -1,0 +1,2 @@
+---
+HOMEBREW_GITHUB_API_TOKEN: "{{lookup('env', 'HOMEBREW_GITHUB_API_TOKEN')}}"

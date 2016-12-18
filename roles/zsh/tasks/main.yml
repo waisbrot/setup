@@ -1,0 +1,25 @@
+---
+- name: install zsh
+  homebrew: name=zsh state=latest
+
+- name: allow zsh shell
+  become: yes
+  lineinfile: dest=/etc/shells line="/usr/local/bin/zsh" state=present
+
+- name: set zsh as the shell
+  user: name={{USER}} shell=/usr/local/bin/zsh
+
+- name: create rc directory
+  file: name={{rc_path}} state=directory
+
+- name: create readme
+  template: src=readme.md.j2 dest={{rc_path}}/readme.md
+
+- name: get antigen
+  get_url: dest={{rc_path}}/aaaa_antigen.zsh url=https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh
+
+- name: configure antigen
+  template: src=antigen-setup.zsh.j2 dest={{rc_path}}/antigen-setup.zsh
+
+- name: create .zshrc
+  template: src=zshrc.j2 dest={{HOME}}/.zshrc

@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  connection: local
+  roles:
+  - homebrew
+  - zsh
+#  - aws
+  - git
+#  - docker
+  - gpg
+  - quicklook
+  - emacs
+  - golang

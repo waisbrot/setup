@@ -1,0 +1,14 @@
+---
+- name: install Mac GPG tools
+  homebrew_cask: name=gpgtools state=present
+
+- name: install GPG 1
+  homebrew: name=gpg state=latest install_options=with-readline
+
+- name: install GPG 2
+  homebrew: name=gpg2 state=latest install_options=with-readline
+
+- name: the user must run `gpg2 --gen-key` themselves to create a key
+  command: /usr/bin/false
+  args:
+    creates: "{{HOME}}/.gnupg"

@@ -1,0 +1,9 @@
+---
+- name: install git
+  homebrew: name=git state=latest
+
+- name: install diff-so-fancy
+  homebrew: name=diff-so-fancy state=latest
+
+- name: configure git
+  template: src=gitconfig.j2 dest={{HOME}}/.gitconfig

@@ -1,0 +1,11 @@
+---
+- name: Install lots of quick-look goodies
+  homebrew_cask: name={{item}} state=present
+  with_items:
+    - qlmarkdown    # Markdown
+    - scriptql      # AppleScript
+    - qlstephen     # Files with no extension
+    - qlplayground  # Swift code
+    - qlcolorcode   # Various source codes
+    - quicklook-json
+    - quicklook-csv

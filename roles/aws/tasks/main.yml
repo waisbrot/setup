@@ -1,0 +1,16 @@
+---
+- name: Install AWS CLI
+  homebrew: name=awscli state=latest
+
+- name: assert variables
+  when: 0 == {{AWS_ACCESS_KEY_ID|count}} or 0 == {{AWS_SECRET_ACCESS_KEY|count}}
+  fail: msg="Required variables missing. AWS_ACCESS_KEY_ID={{AWS_ACCESS_KEY_ID}} AWS_SECRET_ACCESS_KEY={{AWS_SECRET_ACCESS_KEY}}"
+
+- name: Put AWS creds in zshrc
+  template: src=aws.zsh.j2 dest={{rc_path}}/aws.zsh
+
+- name: Create AWS config setup
+  template: src=aws_config.j2 dest={{HOME}}/.aws/config
+
+- name: Create AWS credentials
+  template: src=aws_creds.j2 dest={{HOME}}/.aws/credentials

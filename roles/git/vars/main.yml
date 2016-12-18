@@ -1,0 +1,3 @@
+---
+USER_FULLNAME: "{{lookup('env','USER_FULLNAME')}}"
+

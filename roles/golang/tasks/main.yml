@@ -1,0 +1,12 @@
+---
+- name: Install Golang
+  homebrew: name=go state=latest
+
+- name: Set up Go Workspace
+  file: path={{HOME}}/go-workspace state=directory
+
+- name: Create bin dir for Go workspace
+  file: path={{HOME}}/go-workspace/bin state=directory
+
+- name: set zshrc for Go
+  template: src=golang.zsh.j2 dest={{rc_path}}/golang.zsh

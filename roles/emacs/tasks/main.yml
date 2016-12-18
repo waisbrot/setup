@@ -1,0 +1,18 @@
+---
+- name: install emacs
+  homebrew_cask: name=emacs state=present
+
+- name: install spacemacs
+  git: clone=yes update=no version=master dest={{HOME}}/.emacs.d repo=https://github.com/syl20bnr/spacemacs
+
+- name: configure spacemacs (first time only)
+  template: src=spacemacs.j2 dest={{HOME}}/.spacemacs force=no
+
+- name: tap homebrew fonts
+  homebrew_tap: tap=caskroom/fonts state=present
+
+- name: install Source Code Pro
+  homebrew_cask: name=font-source-code-pro state=present
+
+- name: install `ag` search tool
+  homebrew: name=ag state=latest
